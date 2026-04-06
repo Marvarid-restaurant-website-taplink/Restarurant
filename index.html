@@ -38,9 +38,6 @@ body{background:var(--bg);color:var(--t);font-family:var(--fs);overflow-x:hidden
 @keyframes loaderFadeIn{to{opacity:1}}
 @keyframes dotPulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
 
-/* ── CURSOR ANIMATSIYASI O'CHIRILDI (1-topshiriq) ── */
-/* #dot va #ring elementlari HTML dan ham olib tashlandi */
-
 /* NAV */
 nav{position:fixed;top:0;width:100%;z-index:9000;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;transition:all .4s cubic-bezier(.4,0,.2,1);}
 nav.s{background:var(--nav-bg);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);height:60px;border-bottom:1px solid var(--border);box-shadow:0 4px 40px rgba(0,0,0,.3);}
@@ -206,69 +203,23 @@ nav.s{background:var(--nav-bg);backdrop-filter:blur(28px) saturate(160%);-webkit
 .srv-card p{color:var(--t2);font-size:14px;line-height:1.8;}
 .srv-num{position:absolute;top:28px;right:28px;font-family:var(--ff);font-size:48px;font-weight:700;color:rgba(184,146,42,.08);line-height:1;}
 
-/* ══════════════════════════════════════════
-   GALLERY — Gorizontal sliding (2-topshiriq)
-══════════════════════════════════════════ */
+/* GALLERY */
 .gallery{padding:100px 5%;}
 .gallery-header{text-align:center;margin-bottom:50px;}
-
-/* Slider container */
-.gallery-slider-wrap{
-  position:relative;
-  overflow:hidden;
-  border-radius:18px;
-}
-.gallery-track{
-  display:flex;
-  gap:14px;
-  animation:gallerySlide 22s linear infinite;
-  width:max-content;
-  will-change:transform;
-}
-/* Ikki nusxa — cheksiz loop uchun */
-.gallery-track-inner{
-  display:flex;
-  gap:14px;
-}
-.gallery-track:hover{
-  animation-play-state:paused;
-}
-@keyframes gallerySlide{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
-}
-.gi{
-  flex:0 0 420px;
-  height:300px;
-  overflow:hidden;
-  border-radius:14px;
-  position:relative;
-  cursor:pointer;
-}
+.gallery-slider-wrap{position:relative;overflow:hidden;border-radius:18px;}
+.gallery-track{display:flex;gap:14px;animation:gallerySlide 22s linear infinite;width:max-content;will-change:transform;}
+.gallery-track-inner{display:flex;gap:14px;}
+.gallery-track:hover{animation-play-state:paused;}
+@keyframes gallerySlide{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.gi{flex:0 0 420px;height:300px;overflow:hidden;border-radius:14px;position:relative;cursor:pointer;}
 .gi img{width:100%;height:100%;object-fit:cover;transition:.5s;display:block;}
 .gi:hover img{transform:scale(1.06);}
 .gi-ov{position:absolute;inset:0;background:rgba(8,7,6,.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s;}
 .gi:hover .gi-ov{opacity:1;}
 .gi-ov i{color:var(--g);font-size:28px;}
-
-/* Fade edges */
-.gallery-slider-wrap::before,
-.gallery-slider-wrap::after{
-  content:'';
-  position:absolute;
-  top:0;bottom:0;
-  width:80px;
-  z-index:2;
-  pointer-events:none;
-}
-.gallery-slider-wrap::before{
-  left:0;
-  background:linear-gradient(to right, var(--bg), transparent);
-}
-.gallery-slider-wrap::after{
-  right:0;
-  background:linear-gradient(to left, var(--bg), transparent);
-}
+.gallery-slider-wrap::before,.gallery-slider-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.gallery-slider-wrap::before{left:0;background:linear-gradient(to right, var(--bg), transparent);}
+.gallery-slider-wrap::after{right:0;background:linear-gradient(to left, var(--bg), transparent);}
 
 /* CONTACT */
 .contact{padding:100px 5%;background:var(--bg2);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
@@ -293,41 +244,27 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
 .fsoc a:hover{border-color:var(--g);color:var(--g);}
 .fb{text-align:center;color:var(--t2);font-size:12px;border-top:1px solid var(--border);padding-top:24px;}
 
-/* ══════════════════════════════════════════
-   SCROLL TO TOP BUTTON (3-topshiriq)
-══════════════════════════════════════════ */
-#scrollTopBtn{
-  position:fixed;
-  bottom:32px;
-  right:28px;
-  z-index:8000;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  background:var(--g);
-  border:none;
-  color:#000;
-  font-size:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  box-shadow:0 6px 24px rgba(184,146,42,.45);
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(12px);
-  transition:opacity .35s ease, visibility .35s ease, transform .35s ease, background .25s;
+/* DEVELOPER SIGNATURE */
+.dev-signature{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  margin-top:20px;padding:16px 28px;
+  background:rgba(184,146,42,.05);
+  border:1px solid rgba(184,146,42,.12);
+  border-radius:50px;
+  width:fit-content;margin-left:auto;margin-right:auto;
+  transition:.3s;
 }
-#scrollTopBtn.show{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
-}
-#scrollTopBtn:hover{
-  background:var(--g2);
-  transform:translateY(-3px);
-  box-shadow:0 10px 32px rgba(184,146,42,.55);
-}
+.dev-signature:hover{background:rgba(184,146,42,.1);border-color:rgba(184,146,42,.3);}
+.dev-sig-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:sigPulse 2s ease-in-out infinite;}
+@keyframes sigPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.dev-sig-text{font-size:11px;letter-spacing:2px;color:var(--t2);}
+.dev-sig-text span{color:var(--g);font-weight:600;}
+.dev-sig-icon{color:var(--g);font-size:13px;opacity:.7;}
+
+/* SCROLL TO TOP */
+#scrollTopBtn{position:fixed;bottom:32px;right:28px;z-index:8000;width:50px;height:50px;border-radius:50%;background:var(--g);border:none;color:#000;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 24px rgba(184,146,42,.45);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .35s ease, visibility .35s ease, transform .35s ease, background .25s;}
+#scrollTopBtn.show{opacity:1;visibility:visible;transform:translateY(0);}
+#scrollTopBtn:hover{background:var(--g2);transform:translateY(-3px);box-shadow:0 10px 32px rgba(184,146,42,.55);}
 
 /* RESPONSIVE */
 @media(max-width:960px){
@@ -434,8 +371,6 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
   <div class="loader-sub">Premium Xorazm Restoran</div>
 </div>
 
-<!-- CURSOR ELEMENTS O'CHIRILDI (1-topshiriq) -->
-
 <!-- MODAL -->
 <div id="modal-overlay" role="dialog" aria-modal="true">
   <div id="modal-box">
@@ -454,7 +389,7 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
   </div>
 </div>
 
-<!-- SCROLL TO TOP BUTTON (3-topshiriq) -->
+<!-- SCROLL TO TOP BUTTON -->
 <button id="scrollTopBtn" aria-label="Yuqoriga qaytish">
   <i class="fas fa-chevron-up"></i>
 </button>
@@ -552,7 +487,7 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
   <div class="fish-grid" id="fishGrid"></div>
 </section>
 
-<!-- SERVICES — Catering Xizmati OLIB TASHLANDI (4-topshiriq) -->
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="rv" style="text-align:center;">
     <div class="sec-tag" style="justify-content:center;" data-i="ourServices">Xizmatlarimiz</div>
@@ -562,13 +497,12 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
     <div class="srv-card rv"><div class="srv-num">01</div><div class="srv-icon"><i class="fas fa-utensils"></i></div><h3 data-i="srv1t">Restoran Xizmati</h3><p data-i="srv1p">Shinam zalimizda oila va do'stlar bilan qulay muhitda premium darajadagi xizmat. Har bir stol uchun alohida e'tibor.</p></div>
     <div class="srv-card rv"><div class="srv-num">02</div><div class="srv-icon"><i class="fas fa-truck-fast"></i></div><h3 data-i="srv2t">Yetkazib Berish</h3><p data-i="srv2p">Xonqa tumani bo'ylab tezkor yetkazib berish xizmati. Issiq va yangi taomlarni eshigingizgacha olib boramiz.</p></div>
     <div class="srv-card rv"><div class="srv-num">03</div><div class="srv-icon"><i class="fas fa-champagne-glasses"></i></div><h3 data-i="srv3t">To'y & Ziyofatlar</h3><p data-i="srv3p">Nikoh to'yi, tug'ilgan kun, korporativ tadbirlar uchun maxsus dasturxon va katering xizmati taklif etamiz.</p></div>
-    <!-- Catering Xizmati (04) O'CHIRILDI (4-topshiriq) -->
     <div class="srv-card rv"><div class="srv-num">04</div><div class="srv-icon"><i class="fas fa-fire-flame-curved"></i></div><h3 data-i="srv5t">Tandir & Grill</h3><p data-i="srv5p">Maxsus buyurtma asosida tandir non, somsa, shashlik va boshqa grill taomlarni ko'p miqdorda tayyorlab beramiz.</p></div>
     <div class="srv-card rv"><div class="srv-num">05</div><div class="srv-icon"><i class="fas fa-phone-volume"></i></div><h3 data-i="srv6t">Oldindan Buyurtma</h3><p data-i="srv6p">Telefon yoki Telegram orqali oldindan buyurtma bering. Kelguncha taomingiz tayyor bo'ladi — kutish yo'q.</p></div>
   </div>
 </section>
 
-<!-- GALLERY — Gorizontal sliding (2-topshiriq) -->
+<!-- GALLERY -->
 <section class="gallery" id="gallery">
   <div class="rv gallery-header">
     <div class="sec-tag" style="justify-content:center;" data-i="atmosphere">Atmosfera</div>
@@ -576,7 +510,6 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
   </div>
   <div class="gallery-slider-wrap rv">
     <div class="gallery-track" id="galleryTrack">
-      <!-- Birinchi nusxa -->
       <div class="gallery-track-inner" id="galleryInner1">
         <div class="gi"><img src="fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-18.png" alt="Restoran zali"><div class="gi-ov"><i class="fas fa-expand-alt"></i></div></div>
         <div class="gi"><img src="fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-20.png" alt="Grill taomlar"><div class="gi-ov"><i class="fas fa-expand-alt"></i></div></div>
@@ -584,7 +517,6 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
         <div class="gi"><img src="02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-11.png" alt="Restoran ichki ko'rinish"><div class="gi-ov"><i class="fas fa-expand-alt"></i></div></div>
         <div class="gi"><img src="02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-13.png" alt="Premium taom"><div class="gi-ov"><i class="fas fa-expand-alt"></i></div></div>
       </div>
-      <!-- Ikkinchi nusxa (cheksiz loop uchun) -->
       <div class="gallery-track-inner" id="galleryInner2" aria-hidden="true">
         <div class="gi"><img src="fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-18.png" alt=""><div class="gi-ov"><i class="fas fa-expand-alt"></i></div></div>
         <div class="gi"><img src="fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-20.png" alt=""><div class="gi-ov"><i class="fas fa-expand-alt"></i></div></div>
@@ -629,7 +561,14 @@ footer{padding:56px 5% 28px;border-top:1px solid var(--border);}
       <a href="tel:+998885115144" title="Telefon"><i class="fas fa-phone"></i></a>
     </div>
   </div>
-  <div class="fb" data-i="copyright">© 2026 Javohir Javlonboyev. Barcha huquqlar himoyalangan · Xonqa tumani, Xorazm</div>
+  <div class="fb" data-i="copyright">© 2026 Marvarid Premium Restoran. Barcha huquqlar himoyalangan · Xonqa tumani, Xorazm</div>
+
+  <!-- DEVELOPER SIGNATURE -->
+  <div class="dev-signature">
+    <div class="dev-sig-dot"></div>
+    <span class="dev-sig-text">Yaratuvchi: <span>Javohir Javlonboyev</span></span>
+    <i class="fas fa-code dev-sig-icon"></i>
+  </div>
 </footer>
 
 <script>
@@ -653,7 +592,7 @@ uz:{
   srv6t:"Oldindan Buyurtma",srv6p:"Telefon yoki Telegram orqali oldindan buyurtma bering. Kelguncha taomingiz tayyor bo'ladi — kutish yo'q.",
   atmosphere:"Atmosfera",galleryTitle:"Gallereya",
   contact:"Aloqa",findUs:"Bizni Toping",address:"Manzil",phone:"Telefon",workHours:"Ish Vaqti",hours:"Har kuni: 10:00 — 23:00",directions:"Yo'nalish olish",
-  copyright:"© 2026 Javohir Javlonboyev. Barcha huquqlar himoyalangan · Xonqa tumani, Xorazm",
+  copyright:"© 2026 Marvarid Premium Restoran. Barcha huquqlar himoyalangan · Xonqa tumani, Xorazm",
   noFood:"Bu kategoriyada taom yo'q",
   price:"Narx",
 },
@@ -675,7 +614,7 @@ ru:{
   srv6t:"Предварительный заказ",srv6p:"Заказывайте по телефону или Telegram. Блюдо будет готово к вашему приходу — без ожидания.",
   atmosphere:"Атмосфера",galleryTitle:"Галерея ресторана",
   contact:"Контакты",findUs:"Найдите нас",address:"Адрес",phone:"Телефон",workHours:"Часы работы",hours:"Ежедневно: 10:00 — 23:00",directions:"Маршрут",
-  copyright:"© 2026 Javohir Javlonboyev. Все права защищены · Хонка, Хорезм",
+  copyright:"© 2026 Marvarid Premium Restaurant. Все права защищены · Хонка, Хорезм",
   noFood:"В этой категории нет блюд",
   price:"Цена",
 },
@@ -697,7 +636,7 @@ en:{
   srv6t:"Pre-orders",srv6p:"Order by phone or Telegram in advance. Your food will be ready when you arrive — no waiting.",
   atmosphere:"Atmosphere",galleryTitle:"Restaurant Gallery",
   contact:"Contact",findUs:"Find Us",address:"Address",phone:"Phone",workHours:"Working Hours",hours:"Daily: 10:00 — 23:00",directions:"Get Directions",
-  copyright:"© 2026 Javohir Javlonboyev. All rights reserved · Khonka, Khorezm",
+  copyright:"© 2026 Marvarid Premium Restaurant. All rights reserved · Khonka, Khorezm",
   noFood:"No dishes in this category",
   price:"Price",
 }};
@@ -723,90 +662,144 @@ document.addEventListener('click',e=>{if(!e.target.closest('.lang-wrap'))documen
 /* ── LOADING ── */
 window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hide');},2000);});
 
-/* ── MENU DATA (Go'shtli somsa id:18 va Tandir non id:17 O'CHIRILDI — 5-topshiriq) ── */
+/* ── MENU DATA ── */
 const MENU=[
-  {id:1,name:{uz:"Ilik sho'rva",ru:'Костный бульон',en:'Bone Broth Soup'},desc:{uz:"Mol iligidan pishirilgan foydali va mazali sho'rva",ru:'Полезный суп из костного мозга',en:'Nutritious soup made from bone marrow'},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-14.png'},
-  {id:2,name:{uz:'Toshkent mastava',ru:'Ташкентская мастава',en:'Tashkent Mastava'},desc:{uz:"Guruch va go'shtdan tayyorlangan an'anaviy o'zbek sho'rvasi",ru:'Традиционный узбекский суп с рисом и мясом',en:'Traditional Uzbek rice and meat soup'},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-31.png'},
-  {id:3,name:{uz:"Uyg'ur lag'mon",ru:'Уйгурский лагман',en:'Uyghur Lagman'},desc:{uz:"Qo'lda cho'zilgan uyg'ur uslubidagi lag'mon",ru:'Уйгурский лагман с тянутой лапшой',en:'Hand-pulled Uyghur style noodle soup'},price:'25 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-13.png'},
-  {id:4,name:{uz:"Teftel sho'rva",ru:'Суп с тефтелями',en:'Meatball Soup'},desc:{uz:"Yumshoq go'shtli koptoklar bilan tayyorlangan sho'rva",ru:'Суп с нежными мясными шариками',en:'Soup with tender meat dumplings'},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-12.png'},
-  {id:5,name:{uz:"Ko'za sho'rva",ru:'Козасуп',en:'Koza Shorva'},desc:{uz:"Ko'za idishda pishirilgan maxsus Xorazm sho'rvasi",ru:'Специальный хорезмский суп в горшочке',en:'Special Khorezm soup cooked in clay pot'},price:'35 000',cat:'soup',stars:5,badge:'⭐ Maxsus',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-10.png'},
-  {id:6,name:{uz:'Okroshka',ru:'Окрошка',en:'Okroshka'},desc:{uz:"Sovuq va yangilovchi yoz sho'rvasi",ru:'Холодный освежающий летний суп',en:'Cold refreshing summer soup'},price:'15 000',cat:'soup',stars:4,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-21.png'},
-  {id:7,name:{uz:"Sho'rva barak",ru:'Сhorba barak',en:'Shorva Barak'},desc:{uz:"Go'shtli varaqa bo'laklari bilan sho'rva",ru:'Суп с кусочками мясного теста',en:'Soup with meat filled pastry pieces'},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-17.png'},
-  {id:8,name:{uz:'Barak assorti',ru:'Барак ассорти',en:'Barak Assorted'},desc:{uz:"Har xil to'ldiriqli barak — maxsus to'plam",ru:"Барак с разными начинками — особый набор",en:'Assorted barak with various fillings'},price:'60 000',cat:'soup',stars:5,badge:'⭐ Maxsus',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-23.png'},
-  {id:9,name:{uz:'Un oshi',ru:'Лапша с мукой',en:'Un Oshi'},desc:{uz:"An'anaviy Xorazm osh — un, go'sht va sabzavot bilan",ru:'Традиционное хорезмское блюдо с лапшой',en:'Traditional Khorezm noodle dish with meat'},price:'18 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-11.png'},
-  {id:10,name:{uz:"Qovurma lag'mon",ru:'Жареный лагман',en:'Fried Lagman'},desc:{uz:"Qovurilgan lag'mon — yangi sabzavotlar bilan",ru:'Жареный лагман со свежими овощами',en:'Fried lagman with fresh vegetables'},price:'35 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-17.png'},
-  {id:11,name:{uz:"Sariyog'ga tovuq",ru:'Цыплёнок в масле',en:'Butter Chicken'},desc:{uz:"Sariyog'da qovurilgan mazali tovuq",ru:'Курица, жаренная в сливочном масле',en:'Chicken fried in butter'},price:'70 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-19.png'},
-  {id:12,name:{uz:'Setka tovuq',ru:'Курица сетка',en:'Net Chicken'},desc:{uz:'Maxsus setka usulida pishirilgan tovuq',ru:'Курица, приготовленная методом сетки',en:'Chicken prepared using the net method'},price:'65 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-11.png'},
-  {id:13,name:{uz:'Marvarid katlet',ru:'Котлета Марварид',en:'Marvarid Cutlet'},desc:{uz:"Restoran maxsus katlet — go'sht va ziravorlar aralashmasi",ru:'Фирменная котлета ресторана',en:'Restaurant signature cutlet'},price:'55 000',cat:'main',stars:5,badge:'⭐ Maxsus',img:'hq720.jpg'},
-  {id:14,name:{uz:'Qanot',ru:'Крылышки',en:'Wings'},desc:{uz:'Maxsus sous bilan pishirilgan tovuq qanoti',ru:'Куриные крылышки в особом соусе',en:'Chicken wings with special sauce'},price:'70 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-17.png'},
-  {id:15,name:{uz:"Go'shtli rulet",ru:'Мясной рулет',en:'Meat Roulade'},desc:{uz:"Qo'lda tayyorlangan go'shtli rulet",ru:'Ручной мясной рулет',en:'Handmade meat roulade'},price:'250 000',cat:'main',stars:5,badge:'⭐ Premium',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-13.png'},
-  {id:55,name:{uz:'Beshbarmoq',ru:'Бешбармак',en:'Beshbarmaq'},desc:{uz:"An'anaviy qo'y go'shtidan tayyorlangan milliy taom — katta varaqa va go'sht bilan",ru:'Национальное блюдо из баранины с тестом',en:'Traditional lamb dish with flat noodles'},price:"— so'm",cat:'main',stars:5,badge:'⭐ Milliy',img:'beshbarmoq.jpg'},
-  {id:56,name:{uz:"Qo'y jazz",ru:'Бараньи ноги',en:'Lamb Feet'},desc:{uz:"Qo'y oyog'idan tayyorlangan mazali va foydali taom",ru:'Сытное блюдо из бараньих ног',en:'Nutritious dish made from lamb feet'},price:"— so'm",cat:'main',stars:5,badge:'🍚 Asosiy',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-20.png'},
-  /* id:16 Chitir somsa — qoldirildi */
-  {id:16,name:{uz:'Chitir somsa',ru:'Хрустящая самса',en:'Crispy Samsa'},desc:{uz:'Tandirda pishirilgan krispy somsa',ru:'Хрустящая самса из тандыра',en:'Crispy samsa baked in tandoor'},price:'12 000',cat:'bread',stars:5,badge:'🫓 Somsa',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-18.png'},
-  /* id:17 Tandir non — O'CHIRILDI (5-topshiriq) */
-  /* id:18 Go'shtli somsa — O'CHIRILDI (5-topshiriq) */
-  {id:19,name:{uz:'Marvarid salat',ru:'Салат Марварид',en:'Marvarid Salad'},desc:{uz:'Restoran maxsus salati — yangi sabzavotlar va sous',ru:'Фирменный салат ресторана',en:'Restaurant signature salad'},price:'35 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'salad.jpg'},
-  {id:20,name:{uz:'Mujskoy kapriz',ru:'Мужской каприз',en:"Men's Caprice"},desc:{uz:"Go'sht va sabzavotlardan tayyorlangan erkaklar salati",ru:'Мясной салат с овощами',en:'Meat and vegetable salad'},price:'30 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-23.png'},
-  {id:21,name:{uz:'Rafello salat',ru:'Салат Рафелло',en:'Rafello Salad'},desc:{uz:'Kremli va mazali Rafello uslubidagi salat',ru:'Нежный сливочный салат Рафелло',en:'Creamy delicious Rafello style salad'},price:'40 000',cat:'salad',stars:5,badge:'⭐ Premium',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-21.png'},
-  {id:22,name:{uz:'Nejnost salat',ru:'Салат Нежность',en:'Tenderness Salad'},desc:{uz:'Nozik va yengil mazali salat',ru:'Лёгкий нежный салат',en:'Light and tender salad'},price:'30 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-20.png'},
-  {id:23,name:{uz:'Fransuzki salat',ru:'Французский салат',en:'French Salad'},desc:{uz:'Frantsuz uslubidagi mazali salat',ru:'Салат во французском стиле',en:'French style delicious salad'},price:'30 000',cat:'salad',stars:4,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-16.png'},
-  {id:24,name:{uz:'Baqlajon rulet',ru:'Рулет из баклажана',en:'Eggplant Roulade'},desc:{uz:'Qovurilgan baqlajondan tayyorlangan rulet',ru:'Рулет из жареного баклажана',en:'Roulade made from fried eggplant'},price:'35 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'baqlajon251acf540069bfb04b3355553ff93ad3.jpg'},
-  {id:25,name:{uz:'Mevali salat',ru:'Фруктовый салат',en:'Fruit Salad'},desc:{uz:'Yangi mevalardan tayyorlangan salat',ru:'Салат из свежих фруктов',en:'Salad made from fresh fruits'},price:'30 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-19.png'},
-  {id:57,name:{uz:'Uch kunli salat',ru:'Трёхдневный салат',en:'Three-Day Salad'},desc:{uz:"Restoran maxsus uch kunlik marinadlangan salat — noyob ta'm",ru:'Особый маринованный салат ресторана',en:'Special restaurant marinated salad — unique taste'},price:"— so'm",cat:'salad',stars:5,badge:'⭐ Maxsus',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-17.png'},
-  {id:26,name:{uz:"Uyg'ur kabob",ru:'Уйгурский кебаб',en:'Uyghur Kebab'},desc:{uz:"Uyg'ur uslubidagi go'sht kabob — maxsus ziravorlar bilan",ru:'Уйгурский мясной кебаб со специями',en:'Uyghur style meat kebab with spices'},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-14.png'},
-  {id:27,name:{uz:'Qozon kabob',ru:'Казан кебаб',en:'Cauldron Kebab'},desc:{uz:'Qozonda dam bilan pishirilgan kabob',ru:'Кебаб, тушёный в казане',en:'Kebab steamed in a cauldron'},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-31.png'},
-  {id:28,name:{uz:"Sho'r kabob",ru:'Шор кебаб',en:'Shor Kebab'},desc:{uz:"Maxsus sho'r marinadda tayyorlangan kabob",ru:'Кебаб в особом рассоле',en:'Kebab in special brine marinade'},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-13.png'},
-  {id:29,name:{uz:"Go'sht say",ru:'Мясное сай',en:'Meat Sai'},desc:{uz:"Yumshoq pishirilgan go'sht bo'laklari",ru:'Нежно тушёные куски мяса',en:'Tender slow cooked meat pieces'},price:'50 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-12.png'},
-  {id:30,name:{uz:"Avg'on jiz",ru:'Афганский джиз',en:'Afghan Jiz'},desc:{uz:"Avg'on uslubida pishirilgan jiz",ru:'Джиз по-афгански',en:'Afghan style jiz'},price:'220 000',cat:'grill',stars:5,badge:'⭐ Maxsus',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-10.png'},
-  {id:31,name:{uz:'Setka kabob',ru:'Кебаб сетка',en:'Net Kebab'},desc:{uz:'Setka usulida pishirilgan maxsus kabob',ru:'Особый кебаб методом сетки',en:'Special net method grilled kebab'},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-18.png'},
-  {id:32,name:{uz:'Patira kabob',ru:'Патира кебаб',en:'Patira Kebab'},desc:{uz:'Patira nonida pishirilgan maxsus kabob',ru:'Особый кебаб с патыром',en:'Special kebab with patir bread'},price:'230 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-20.png'},
-  {id:33,name:{uz:'Patira jiz',ru:'Патира джиз',en:'Patira Jiz'},desc:{uz:'Patira nonida pishirilgan jiz',ru:'Джиз с патыром',en:'Jiz with patir bread'},price:'230 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-14.png'},
-  {id:34,name:{uz:'Qaymoqqa Kabob',ru:'Кебаб со сметаной',en:'Cream Kebab'},desc:{uz:"Qaymog'da pishirilgan premium kabob",ru:'Премиум кебаб в сметане',en:'Premium kebab cooked in cream'},price:'220 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'qaymoqqa kabob.jpg'},
-  {id:35,name:{uz:'Tushonka',ru:'Тушонка',en:'Tushonka'},desc:{uz:"Maxsus usulda tayyorlangan go'sht",ru:'Мясо особого приготовления',en:'Specially prepared meat dish'},price:'200 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-13.png'},
-  {id:36,name:{uz:"Sariyog'ga dil",ru:'Сердце в масле',en:'Heart in Butter'},desc:{uz:"Sariyog'da pishirilgan mol dili",ru:'Говяжье сердце в сливочном масле',en:'Beef heart cooked in butter'},price:'180 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-12.png'},
-  {id:37,name:{uz:"Qaymoqqa dil",ru:'Сердце со сметаной',en:'Heart in Cream'},desc:{uz:"Qaymog'da pishirilgan mol dili",ru:'Говяжье сердце в сметане',en:'Beef heart cooked in cream'},price:'180 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-10.png'},
-  {id:38,name:{uz:"Asado go'sht",ru:'Асадо мясо',en:'Asado Meat'},desc:{uz:"Asado uslubida pishirilgan premium go'sht",ru:'Мясо в стиле Асадо',en:'Premium meat prepared Asado style'},price:'180 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-18.png'},
-  {id:39,name:{uz:"Ko'za go'sht",ru:'Козамясо',en:'Koza Meat'},desc:{uz:"Ko'za idishda pishirilgan go'sht",ru:'Мясо в горшочке',en:'Meat cooked in clay pot'},price:'110 000',cat:'grill',stars:5,badge:'⭐ Maxsus',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-19.png'},
-  {id:40,name:{uz:'Vaguri',ru:'Вагури',en:'Vaguri'},desc:{uz:'Maxsus Xorazm uslubida tayyorlangan vaguri',ru:'Вагури по-хорезмски',en:'Special Khorezm style Vaguri'},price:'250 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-11.png'},
-  {id:41,name:{uz:'Marvarid kabob',ru:'Кебаб Марварид',en:'Marvarid Kebab'},desc:{uz:'Restoran maxsus kabob — sirli retsept',ru:'Фирменный кебаб ресторана — секретный рецепт',en:'Signature kebab — secret recipe'},price:'220 000',cat:'grill',stars:5,badge:'⭐ Maxsus',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-14.png'},
-  {id:42,name:{uz:'Jigar kabob',ru:'Кебаб из печени',en:'Liver Kebab'},desc:{uz:'Yangi jigardan tayyorlangan kabob',ru:'Кебаб из свежей печени',en:'Kebab made from fresh liver'},price:'200 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-12.png'},
-  {id:43,name:{uz:"Go'sht assorti",ru:'Мясное ассорти',en:'Meat Assorted'},desc:{uz:"Turli xil go'sht taomlaridan iborat to'plam",ru:'Набор из разных мясных блюд',en:'Collection of various meat dishes'},price:'400 000',cat:'grill',stars:5,badge:'⭐ Assorti',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-10.png'},
-  {id:44,name:{uz:'Mangal assorti',ru:'Мангал ассорти',en:'Mangal Assorted'},desc:{uz:"Mangalda pishirilgan taomlardan premium to'plam",ru:'Премиум набор блюд с мангала',en:'Premium collection of mangal dishes'},price:'550 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-18.png'},
-  {id:45,name:{uz:'Miks assorti',ru:'Микс ассорти',en:'Mix Assorted'},desc:{uz:"Kabob va grill taomlaridan miks to'plam",ru:'Микс из кебабов и гриля',en:'Mix collection of kebabs and grills'},price:'500 000',cat:'grill',stars:5,badge:'⭐ Assorti',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-19.png'},
-  {id:46,name:{uz:'Kabob assorti',ru:'Кебаб ассорти',en:'Kebab Assorted'},desc:{uz:"Turli xil kaboblardan tuzilgan maxsus to'plam",ru:'Особый набор из разных кебабов',en:'Special collection of various kebabs'},price:'450 000',cat:'grill',stars:5,badge:'⭐ Assorti',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-17.png'},
-  {id:47,name:{uz:'Marvarid assorti',ru:'Ассорти Марварид',en:'Marvarid Assorted'},desc:{uz:"Restoran eng yaxshi taomlaridan maxsus to'plam",ru:'Особый набор из лучших блюд ресторана',en:'Special collection of restaurant best dishes'},price:'600 000',cat:'grill',stars:5,badge:'👑 VIP',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-11.png'},
-  {id:48,name:{uz:'Mangal mini assorti',ru:'Мини мангал ассорти',en:'Mini Mangal Assorted'},desc:{uz:"Kichik hajmdagi mangal taomlar to'plami",ru:'Небольшой набор блюд с мангала',en:'Small collection of mangal dishes'},price:'250 000',cat:'grill',stars:5,badge:'🔥 Mangal',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-20.png'},
-  {id:49,name:{uz:"G'ijdivon shashlik",ru:'Гиждуванский шашлык',en:'Ghijduvan Shashlik'},desc:{uz:"G'ijdivon uslubidagi an'anaviy shashlik (1 shampurga)",ru:'Традиционный шашлык по-гиждуански (за шампур)',en:'Traditional Ghijduvan style shashlik (per skewer)'},price:'16 000',cat:'grill',stars:5,badge:'🔥 Shashlik',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-14.png'},
-  {id:50,name:{uz:'JazZ shashlik',ru:'Шашлык JazZ',en:'JazZ Shashlik'},desc:{uz:'Premium JazZ uslubida tayyorlangan shashlik (1 ta)',ru:'Шашлык премиум JazZ (за штуку)',en:'Premium JazZ style shashlik (each)'},price:'27 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-31.png'},
-  {id:51,name:{uz:'Ijjon shashlik',ru:'Ижон шашлык',en:'Ijon Shashlik'},desc:{uz:'Ijon uslubidagi shashlik (1 shampurga)',ru:'Шашлык ижон (за шампур)',en:'Ijon style shashlik (per skewer)'},price:'14 000',cat:'grill',stars:4,badge:'🔥 Shashlik',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-10.png'},
-  {id:52,name:{uz:'Ti bon steyk',ru:'Стейк Ти-бон',en:'T-Bone Steak'},desc:{uz:"Yuqori sifatli ti-bon steyk — premium go'sht",ru:'Стейк Ти-бон высшего качества',en:'Premium quality T-bone steak'},price:'220 000',cat:'grill',stars:5,badge:'👑 Steyk',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-19.png'},
-  {id:53,name:{uz:'Bon file steyk',ru:'Стейк бон-филе',en:'Bone-in Fillet Steak'},desc:{uz:"Suyak bilan file steyk — eng yuqori sifat",ru:'Стейк филе на кости — высшее качество',en:'Bone-in fillet steak — premium quality'},price:'300 000',cat:'grill',stars:5,badge:'👑 Premium',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-17.png'},
-  {id:54,name:{uz:'Tovuq shashlik',ru:'Шашлык из курицы',en:'Chicken Shashlik'},desc:{uz:'Marinadlangan tovuq shashlik (1 shampurga)',ru:'Маринованный шашлык из курицы (за шампур)',en:'Marinated chicken shashlik (per skewer)'},price:'20 000',cat:'grill',stars:5,badge:'🔥 Shashlik',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-11.png'},
-  {id:58,name:{uz:'Rulet shashlik',ru:'Рулет шашлык',en:'Roulade Shashlik'},desc:{uz:"Go'shtni rulet shaklida o'rab tayyorlangan maxsus shashlik",ru:'Шашлык, скрученный рулетом из мяса',en:'Shashlik rolled into a special meat roulade'},price:"— so'm",cat:'grill',stars:5,badge:'⭐ Maxsus',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-13.png'},
-  {id:59,name:{uz:'Marvarid shashlik',ru:'Шашлык Марварид',en:'Marvarid Shashlik'},desc:{uz:"Restoran o'z sirli marinadida tayyorlangan maxsus shashlik",ru:"Шашлык в фирменном маринаде ресторана",en:"Shashlik in the restaurant's secret marinade"},price:"— so'm",cat:'grill',stars:5,badge:'👑 Maxsus',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-12.png'},
-  {id:60,name:{uz:'Koreyka steyk',ru:'Стейк корейка',en:'Koreyka Steak'},desc:{uz:"Mol koreykasidan tayyorlangan yumshoq va sharbatli steyk",ru:'Нежный сочный стейк из говяжьей корейки',en:'Tender juicy steak from beef loin'},price:"— so'm",cat:'grill',stars:5,badge:'👑 Steyk',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-18.png'},
+  // SHORVA
+  {id:1,name:{uz:"Ilik sho'rva",ru:'Костный бульон',en:'Bone Broth Soup'},desc:{},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-14.png'},
+  {id:2,name:{uz:'Toshkent mastava',ru:'Ташкентская мастава',en:'Tashkent Mastava'},desc:{},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-31.png'},
+  {id:3,name:{uz:"Uyg'ur lag'mon",ru:'Уйгурский лагман',en:'Uyghur Lagman'},desc:{},price:'25 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-13.png'},
+  {id:4,name:{uz:"Teftel sho'rva",ru:'Суп с тефтелями',en:'Meatball Soup'},desc:{},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-12.png'},
+  {id:5,name:{uz:"Ko'za sho'rva",ru:'Козасуп',en:'Koza Shorva'},desc:{},price:'35 000',cat:'soup',stars:5,badge:'⭐ Maxsus',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-10.png'},
+  {id:6,name:{uz:'Okroshka',ru:'Окрошка',en:'Okroshka'},desc:{},price:'15 000',cat:'soup',stars:4,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-21.png'},
+  {id:7,name:{uz:"Sho'rva barak",ru:'Сhorba barak',en:'Shorva Barak'},desc:{},price:'20 000',cat:'soup',stars:5,badge:"🍲 Shorva",img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-17.png'},
+  {id:8,name:{uz:'Barak assorti',ru:'Барак ассорти',en:'Barak Assorted'},desc:{},price:'90 000',cat:'soup',stars:5,badge:'⭐ Maxsus',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-23.png'},
+  // ASOSIY
+  {id:9,name:{uz:'Un oshi',ru:'Лапша с мукой',en:'Un Oshi'},desc:{},price:'18 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-11.png'},
+  {id:10,name:{uz:"Qovurma lag'mon",ru:'Жареный лагман',en:'Fried Lagman'},desc:{},price:'35 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-17.png'},
+  {id:11,name:{uz:"Sariyog'ga tovuq",ru:'Цыплёнок в масле',en:'Butter Chicken'},desc:{},price:'70 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-19.png'},
+  {id:12,name:{uz:'Setka tovuq',ru:'Курица сетка',en:'Net Chicken'},desc:{},price:'65 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-11.png'},
+  {id:13,name:{uz:'Marvarid katlet',ru:'Котлета Марварид',en:'Marvarid Cutlet'},desc:{},price:'55 000',cat:'main',stars:5,badge:'⭐ Maxsus',img:'hq720.jpg'},
+  {id:14,name:{uz:'Qanot',ru:'Крылышки',en:'Wings'},desc:{},price:'70 000',cat:'main',stars:5,badge:'🍚 Asosiy',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-17.png'},
+  {id:15,name:{uz:"Go'shtli rulet",ru:'Мясной рулет',en:'Meat Roulade'},desc:{},price:'250 000',cat:'main',stars:5,badge:'⭐ Premium',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-13.png'},
+  {id:55,name:{uz:'Beshbarmoq',ru:'Бешбармак',en:'Beshbarmaq'},desc:{},price:"— so'm",cat:'main',stars:5,badge:'⭐ Milliy',img:'beshbarmoq.jpg'},
+  {id:56,name:{uz:"Qo'y jazz",ru:'Бараньи ноги',en:'Lamb Feet'},desc:{},price:"— so'm",cat:'main',stars:5,badge:'🍚 Asosiy',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-20.png'},
+  // NON & SOMSA
+  {id:16,name:{uz:'Chitir somsa',ru:'Хрустящая самса',en:'Crispy Samsa'},desc:{},price:'12 000',cat:'bread',stars:5,badge:'🫓 Somsa',img:'679363ac5f6047acd4bfa132c424ab57uDXCqD20VFdFAVS5-18.png'},
+  // SALATLAR — faqat siz aytgan 6 ta + Olivie
+  {
+    id:19,
+    name:{uz:'Marvarid salat',ru:'Салат Марварид',en:'Marvarid Salad'},
+    desc:{
+      uz:'Shirin cherry pomidor, g\'ıchirlovchi aysberg karam va indeyka go\'shti asosida tayyorlangan restoran belgisi salat. Kremli mayonez sousi bilan birga chips qo\'shiladi — har bir qoshiqda yangilik va to\'yimlilik uyg\'unlashgan premium taom.',
+      ru:'Фирменный салат ресторана на основе сладких томатов черри, хрустящего айсберга и индейки. Заправляется сливочным майонезом, подаётся с чипсами — сочетание свежести и сытости в каждой ложке.',
+      en:'The restaurant\'s signature salad made with sweet cherry tomatoes, crispy iceberg lettuce and turkey. Dressed with creamy mayonnaise and topped with chips — a premium dish balancing freshness and richness in every bite.'
+    },
+    price:'35 000',cat:'salad',stars:5,badge:'⭐ Maxsus',img:'salad.jpg'
+  },
+  {
+    id:22,
+    name:{uz:'Nejnost salat',ru:'Салат Нежность',en:'Tenderness Salad'},
+    desc:{
+      uz:'Yangi bodiring, yumshoq pishirilgan no\'xat va go\'sht asosiga qurilgan, mayonez sousi bilan yumshoqlikka erishilgan salat. Ichiga qo\'shilgan mol tili taomga nozik lazzat bersa, chips ustiga sepiladi — nomi bilan to\'liq mos, haqiqatan ham nozik.',
+      ru:'Салат на основе свежего огурца, варёного гороха и мяса, заправленный майонезом до нежной кремовой текстуры. Говяжий язык придаёт изысканный вкус, а чипсы добавляют хруст — полностью соответствует своему названию.',
+      en:'A salad built on fresh cucumber, soft-cooked peas and meat, dressed with mayonnaise to a tender creamy texture. Beef tongue lends a refined flavour while chips add a satisfying crunch — truly lives up to its name.'
+    },
+    price:'30 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-20.png'
+  },
+  {
+    id:20,
+    name:{uz:'Mujskoy kapriz salat',ru:'Салат Мужской каприз',en:"Men's Caprice Salad"},
+    desc:{
+      uz:'Mol go\'shti, indeyka va kalbasa uchligiga bodiring va pishloq qo\'shib tayyorlangan, mayonez bilan aralashtirilgan to\'yimli erkaklar salati. Har bir bo\'lagida seziluvchi go\'shtli lazzat va pishloqning zardobli qatlami — kuchli ishtahaga mo\'ljallangan taom.',
+      ru:'Сытный мужской салат из говядины, индейки и колбасы с огурцом и сыром, заправленный майонезом. В каждом кусочке — насыщенный мясной вкус и сырный слой — блюдо для настоящего аппетита.',
+      en:'A hearty salad for big appetites, combining beef, turkey and sausage with cucumber and cheese, dressed in mayonnaise. Each forkful delivers bold meaty flavour with a rich cheese layer — made for a serious appetite.'
+    },
+    price:'30 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-23.png'
+  },
+  {
+    id:21,
+    name:{uz:'Rafello salat',ru:'Салат Рафелло',en:'Rafello Salad'},
+    desc:{
+      uz:'Qaynatilgan kartoshka, sabzi va tuxum asosiga qurilgan, pishloq va go\'sht qatlami bilan boyitilgan, mayonez bilan surtilib tayyorlangan klassik salat. Har bir qavat alohida tatib ko\'riladi — o\'ziga xos qavat-qavat lazzati bilan dasturxon bezagi.',
+      ru:'Классический салат из варёного картофеля, моркови и яиц, обогащённый слоями сыра и мяса, промазанный майонезом. Каждый пласт раскрывается отдельно — слоистый вкус, украшение праздничного стола.',
+      en:'A classic layered salad of boiled potato, carrot and egg enriched with cheese and meat layers, spread with mayonnaise. Each layer reveals itself separately — a richly layered flavour that graces any festive table.'
+    },
+    price:'40 000',cat:'salad',stars:5,badge:'⭐ Premium',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-21.png'
+  },
+  {
+    id:23,
+    name:{uz:'Yaponiy salat',ru:'Японский салат',en:'Japanese Salad'},
+    desc:{
+      uz:'Yangi pomidor va bodiring, mazali go\'sht, bolgar qalampir va sarimsoq piyoz asosida tayyorlangan yorqin salat. Mayda to\'g\'ralgan zelen unga o\'tkir xushbo\'y ta\'m bag\'ishlaydi — sharqona uslubdagi yengil va ishtahali taom.',
+      ru:'Яркий салат из свежих помидоров, огурцов, мяса, болгарского перца и зелёного чеснока. Мелко нарубленная зелень придаёт острый аромат — лёгкое и аппетитное блюдо в восточном стиле.',
+      en:'A vibrant salad of fresh tomato, cucumber, meat, bell pepper and green onion. Finely chopped herbs lend a sharp aromatic note — a light, appetising dish with an Eastern character.'
+    },
+    price:'30 000',cat:'salad',stars:4,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-16.png'
+  },
+  {
+    id:61,
+    name:{uz:'Olivie salat',ru:'Салат Оливье',en:'Olivier Salad'},
+    desc:{
+      uz:'Qaynatilgan kartoshka, sabzi, doktorskiy kalbasa, tuxum, bodiring, no\'xat va go\'sht aralashmasidan tayyorlangan, mayonez bilan aralashtirilgan hammatime\'s sevimli klassik salat. To\'yimli va serhid, har bir qoshiqda o\'sha tanish va yoqimli ta\'m.',
+      ru:'Любимый классический салат из варёного картофеля, моркови, докторской колбасы, яиц, огурца, горошка и мяса, заправленный майонезом. Сытный и щедрый — в каждой ложке тот самый знакомый и приятный вкус.',
+      en:'The beloved classic salad of boiled potato, carrot, doctor\'s sausage, egg, cucumber, peas and meat, dressed with mayonnaise. Hearty and generous — every spoonful delivers that familiar and comforting taste.'
+    },
+    price:'30 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-19.png'
+  },
+  // Qolgan salatlar — desc yo'q (faqat nom va narx ko'rsatiladi)
+  {id:24,name:{uz:'Baqlajon rulet',ru:'Рулет из баклажана',en:'Eggplant Roulade'},desc:{},price:'35 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'baqlajon251acf540069bfb04b3355553ff93ad3.jpg'},
+  {id:57,name:{uz:'Uch kunli salat',ru:'Трёхдневный салат',en:'Three-Day Salad'},desc:{},price:"— so'm",cat:'salad',stars:5,badge:'⭐ Maxsus',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-17.png'},
+  {id:25,name:{uz:'Mevali salat',ru:'Фруктовый салат',en:'Fruit Salad'},desc:{},price:'30 000',cat:'salad',stars:5,badge:'🥗 Salat',img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-19.png'},
+  // GRILL & KABOB
+  {id:26,name:{uz:"Uyg'ur kabob",ru:'Уйгурский кебаб',en:'Uyghur Kebab'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-14.png'},
+  {id:27,name:{uz:'Qozon kabob',ru:'Казан кебаб',en:'Cauldron Kebab'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-31.png'},
+  {id:28,name:{uz:"Sho'r kabob",ru:'Шор кебаб',en:'Shor Kebab'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-13.png'},
+  {id:29,name:{uz:"Go'sht say",ru:'Мясное сай',en:'Meat Sai'},desc:{},price:'50 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-12.png'},
+  {id:30,name:{uz:"Avg'on jiz",ru:'Афганский джиз',en:'Afghan Jiz'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'⭐ Maxsus',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-10.png'},
+  {id:31,name:{uz:'Setka kabob',ru:'Кебаб сетка',en:'Net Kebab'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-18.png'},
+  {id:32,name:{uz:'Patira kabob',ru:'Патира кебаб',en:'Patira Kebab'},desc:{},price:'230 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'02bc80cb5b4f4482c6bdacdb2fec7c98S67133os6HWnxcmN-20.png'},
+  {id:33,name:{uz:'Patira jiz',ru:'Патира джиз',en:'Patira Jiz'},desc:{},price:'230 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-14.png'},
+  {id:34,name:{uz:'Qaymoqqa Kabob',ru:'Кебаб со сметаной',en:'Cream Kebab'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'qaymoqqa kabob.jpg'},
+  {id:35,name:{uz:'Tushonka',ru:'Тушонка',en:'Tushonka'},desc:{},price:'200 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-13.png'},
+  {id:36,name:{uz:"Sariyog'ga dil",ru:'Сердце в масле',en:'Heart in Butter'},desc:{},price:'180 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-12.png'},
+  {id:37,name:{uz:"Qaymoqqa dil",ru:'Сердце со сметаной',en:'Heart in Cream'},desc:{},price:'180 000',cat:'grill',stars:5,badge:'🔥 Grill',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-10.png'},
+  {id:38,name:{uz:"Asado go'sht",ru:'Асадо мясо',en:'Asado Meat'},desc:{},price:'180 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-18.png'},
+  {id:39,name:{uz:"Ko'za go'sht",ru:'Козамясо',en:'Koza Meat'},desc:{},price:'110 000',cat:'grill',stars:5,badge:'⭐ Maxsus',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-19.png'},
+  {id:40,name:{uz:'Vaguri',ru:'Вагури',en:'Vaguri'},desc:{},price:'250 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'b0b0f8e89662447bff703b05235940feGm45KUUZnkNk1ElA-11.png'},
+  {id:41,name:{uz:'Marvarid kabob',ru:'Кебаб Марварид',en:'Marvarid Kebab'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'⭐ Maxsus',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-14.png'},
+  {id:42,name:{uz:'Jigar kabob',ru:'Кебаб из печени',en:'Liver Kebab'},desc:{},price:'200 000',cat:'grill',stars:5,badge:'🔥 Kabob',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-12.png'},
+  {id:43,name:{uz:"Go'sht assorti",ru:'Мясное ассорти',en:'Meat Assorted'},desc:{},price:'400 000',cat:'grill',stars:5,badge:'⭐ Assorti',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-10.png'},
+  {id:44,name:{uz:'Mangal assorti',ru:'Мангал ассорти',en:'Mangal Assorted'},desc:{},price:'550 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-18.png'},
+  {id:45,name:{uz:'Miks assorti',ru:'Микс ассорти',en:'Mix Assorted'},desc:{},price:'500 000',cat:'grill',stars:5,badge:'⭐ Assorti',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-19.png'},
+  {id:46,name:{uz:'Kabob assorti',ru:'Кебаб ассорти',en:'Kebab Assorted'},desc:{},price:'450 000',cat:'grill',stars:5,badge:'⭐ Assorti',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-17.png'},
+  {id:47,name:{uz:'Marvarid assorti',ru:'Ассорти Марварид',en:'Marvarid Assorted'},desc:{},price:'600 000',cat:'grill',stars:5,badge:'👑 VIP',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-11.png'},
+  {id:48,name:{uz:'Mangal mini assorti',ru:'Мини мангал ассорти',en:'Mini Mangal Assorted'},desc:{},price:'250 000',cat:'grill',stars:5,badge:'🔥 Mangal',img:'fec7e9be927f4749da0cfc30ffaa488dYkFQaBBBeolOzxlw-20.png'},
+  {id:49,name:{uz:"G'ijdivon shashlik",ru:'Гиждуванский шашлык',en:'Ghijduvan Shashlik'},desc:{},price:'16 000',cat:'grill',stars:5,badge:'🔥 Shashlik',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-14.png'},
+  {id:50,name:{uz:'JazZ shashlik',ru:'Шашлык JazZ',en:'JazZ Shashlik'},desc:{},price:'27 000',cat:'grill',stars:5,badge:'⭐ Premium',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-31.png'},
+  {id:51,name:{uz:'Ijjon shashlik',ru:'Ижон шашлык',en:'Ijon Shashlik'},desc:{},price:'14 000',cat:'grill',stars:4,badge:'🔥 Shashlik',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-10.png'},
+  {id:52,name:{uz:'Ti bon steyk',ru:'Стейк Ти-бон',en:'T-Bone Steak'},desc:{},price:'220 000',cat:'grill',stars:5,badge:'👑 Steyk',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-19.png'},
+  {id:53,name:{uz:'Bon file steyk',ru:'Стейк бон-филе',en:'Bone-in Fillet Steak'},desc:{},price:'300 000',cat:'grill',stars:5,badge:'👑 Premium',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-17.png'},
+  {id:54,name:{uz:'Tovuq shashlik',ru:'Шашлык из курицы',en:'Chicken Shashlik'},desc:{},price:'20 000',cat:'grill',stars:5,badge:'🔥 Shashlik',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-11.png'},
+  {id:58,name:{uz:'Rulet shashlik',ru:'Рулет шашлык',en:'Roulade Shashlik'},desc:{},price:"— so'm",cat:'grill',stars:5,badge:'⭐ Maxsus',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-13.png'},
+  {id:59,name:{uz:'Marvarid shashlik',ru:'Шашлык Марварид',en:'Marvarid Shashlik'},desc:{},price:"— so'm",cat:'grill',stars:5,badge:'👑 Maxsus',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-12.png'},
+  {id:60,name:{uz:'Koreyka steyk',ru:'Стейк корейка',en:'Koreyka Steak'},desc:{},price:"— so'm",cat:'grill',stars:5,badge:'👑 Steyk',img:'6015acc99c094e4fab870848302cf884Enau1xU8I932jwzd-18.png'},
 ];
 
 /* ── FISH DATA ── */
 const FISH=[
-  {id:'f1',name:{uz:'Qovurma baliq',ru:'Жареная рыба',en:'Fried Fish'},desc:{uz:'Maxsus ziravorlarda marinadlanib, qovurilgan yangi baliq',ru:'Свежая рыба, маринованная и обжаренная в специях',en:'Fresh fish marinated and fried with special spices'},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-37.png',badge:{uz:'🔥 Qovurma',ru:'🔥 Жареная',en:'🔥 Fried'}},
-  {id:'f2',name:{uz:"So'lqildoq baliq",ru:'Томлёная рыба',en:'Braised Fish'},desc:{uz:'Sekin-asta dimlab pishirilgan, yumshoq va mazali baliq',ru:'Медленно тушёная нежная и вкусная рыба',en:'Slowly braised tender and delicious fish'},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-12.png',badge:{uz:'🍲 Dimlama',ru:'🍲 Тушёная',en:'🍲 Braised'}},
-  {id:'f3',name:{uz:'Sousga baliq',ru:'Рыба в соусе',en:'Fish in Sauce'},desc:{uz:'Maxsus tayyorlangan sous ichida pishirilgan baliq',ru:'Рыба, приготовленная в особом соусе',en:'Fish cooked in specially prepared sauce'},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-11.png',badge:{uz:'🫕 Sous',ru:'🫕 Соус',en:'🫕 Sauce'}},
-  {id:'f4',name:{uz:'Dimlama baliq',ru:'Димляма рыба',en:'Dimlama Fish'},desc:{uz:'Sabzavotlar bilan birga dimlab pishirilgan baliq — Xorazm uslubida',ru:'Рыба с овощами по-хорезмски',en:'Fish steamed with vegetables Khorezm style'},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-10.png',badge:{uz:'⭐ Maxsus',ru:'⭐ Особое',en:'⭐ Special'}},
+  {id:'f1',name:{uz:'Qovurma baliq',ru:'Жареная рыба',en:'Fried Fish'},desc:{uz:'',ru:'',en:''},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-37.png',badge:{uz:'🔥 Qovurma',ru:'🔥 Жареная',en:'🔥 Fried'}},
+  {id:'f2',name:{uz:"So'lqildoq baliq",ru:'Томлёная рыба',en:'Braised Fish'},desc:{uz:'',ru:'',en:''},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-12.png',badge:{uz:'🍲 Dimlama',ru:'🍲 Тушёная',en:'🍲 Braised'}},
+  {id:'f3',name:{uz:'Sousga baliq',ru:'Рыба в соусе',en:'Fish in Sauce'},desc:{uz:'',ru:'',en:''},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-11.png',badge:{uz:'🫕 Sous',ru:'🫕 Соус',en:'🫕 Sauce'}},
+  {id:'f4',name:{uz:'Dimlama baliq',ru:'Димляма рыба',en:'Dimlama Fish'},desc:{uz:'',ru:'',en:''},stars:5,img:'d02cc49835d24322e538af854746e30a26leF3OYQdJes8B2-10.png',badge:{uz:'⭐ Maxsus',ru:'⭐ Особое',en:'⭐ Special'}},
 ];
 
 /* ── NAV SCROLL ── */
 window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('s',scrollY>60);});
 
-/* ── SCROLL TO TOP (3-topshiriq) ── */
+/* ── SCROLL TO TOP ── */
 const scrollBtn=document.getElementById('scrollTopBtn');
-window.addEventListener('scroll',()=>{
-  scrollBtn.classList.toggle('show', scrollY > 400);
-});
-scrollBtn.addEventListener('click',()=>{
-  window.scrollTo({top:0,behavior:'smooth'});
-});
+window.addEventListener('scroll',()=>{scrollBtn.classList.toggle('show', scrollY > 400);});
+scrollBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 
 /* ── MOBILE MENU ── */
 const ham=document.getElementById('ham'),mob=document.getElementById('mob');
@@ -821,9 +814,9 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const overlay=document.getElementById('modal-overlay');
 const closeBtn=document.getElementById('modal-close-btn');
 
-function openModal(item, isFish){
+function openModal(item,isFish){
   const nm=typeof item.name==='object'?item.name[lang]||item.name.uz:item.name;
-  const ds=typeof item.desc==='object'?item.desc[lang]||item.desc.uz:item.desc;
+  const ds=typeof item.desc==='object'?item.desc[lang]||item.desc.uz:'';
   const badge=isFish?(typeof item.badge==='object'?item.badge[lang]||item.badge.uz:item.badge):item.badge;
   const price=item.price;
 
@@ -835,28 +828,17 @@ function openModal(item, isFish){
 
   const badgesEl=document.getElementById('modal-badges');
   badgesEl.innerHTML='';
-  if(badge){
-    const b=document.createElement('span');
-    b.className='modal-badge';b.textContent=badge;
-    badgesEl.appendChild(b);
-  }
+  if(badge){const b=document.createElement('span');b.className='modal-badge';b.textContent=badge;badgesEl.appendChild(b);}
 
   const priceEl=document.getElementById('modal-price');
-  if(price){
-    priceEl.textContent=price+(price.includes('so\'m')||price.includes('—')?'':' so\'m');
-  } else {
-    priceEl.textContent='';
-  }
+  if(price){priceEl.textContent=price+(price.includes("so'm")||price.includes('—')?'':' so\'m');}
+  else{priceEl.textContent='';}
 
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
 }
 
-function closeModal(){
-  overlay.classList.remove('open');
-  document.body.style.overflow='';
-}
-
+function closeModal(){overlay.classList.remove('open');document.body.style.overflow='';}
 closeBtn.addEventListener('click',closeModal);
 overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
@@ -885,11 +867,10 @@ function renderMenu(){
     </div>`).join('');
 
   grid.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
   grid.querySelectorAll('.fc').forEach(el=>{
     el.addEventListener('click',()=>{
-      const id=parseInt(el.dataset.id);
-      const item=MENU.find(f=>f.id===id);
+      const id=el.dataset.id;
+      const item=MENU.find(f=>String(f.id)===String(id));
       if(item)openModal(item,false);
     });
   });
@@ -913,7 +894,6 @@ function renderFish(){
     </div>`).join('');
 
   grid.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
   grid.querySelectorAll('.fish-card').forEach(el=>{
     el.addEventListener('click',()=>{
       const id=el.dataset.id;
